@@ -1,9 +1,9 @@
-
 // La création d'un Dnd requière un canvas et un interacteur.
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
-  console.log("Construit DnD");
   // Définir ici les attributs de la 'classe'
+  this.interactor = interactor;
+
   this.xIni = 0;
   this.yIni = 0;
   this.xFin = 0;
@@ -18,7 +18,8 @@ function DnD(canvas, interactor) {
     this.yIni = pos.y;
 
     this.mousePressed = true;
-    console.log("Start DnD: ", pos);
+
+    this.interactor.onInteractionStart(this);
   }.bind(this);
 
 
@@ -27,7 +28,8 @@ function DnD(canvas, interactor) {
       let pos = getMousePosition(canvas, evt);
       this.xEnd = pos.x;
       this.yEnd = pos.y;
-      console.log("During DnD: ", pos);
+
+      this.interactor.onInteractionUpdate(this);
     }
   }.bind(this);
 
@@ -37,7 +39,8 @@ function DnD(canvas, interactor) {
     this.yEnd = pos.y;
 
     this.mousePressed = false;
-    console.log("End DnD: ", pos);
+
+    this.interactor.onInteractionEnd(this);
   }.bind(this);
 
   // Associer les fonctions précédentes aux évènements du canvas.
@@ -45,7 +48,6 @@ function DnD(canvas, interactor) {
   canvas.addEventListener("mousemove", this.drag);
   canvas.addEventListener("mouseup", this.dragEnd);
 
-  console.log(this, canvas);
 };
 
 
