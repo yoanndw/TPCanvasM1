@@ -12,11 +12,11 @@ function Pencil(ctx, drawing, canvas) {
 	this.onInteractionStart = function (dnd) {
 		switch (this.currEditingMode) {
 			case editingMode.line:
-				this.currentShape = new Ligne(dnd.xIni, dnd.yIni, dnd.xEnd, dnd.yEnd, this.currLineWith, this.currColour);
+				this.currentShape = new Ligne(dnd.xIni, dnd.yIni, dnd.xEnd, dnd.yEnd, this.currLineWidth, this.currColour);
 				break;
 
 			case editingMode.rect:
-				this.currentShape = new Rectangle(dnd.xIni, dnd.yIni, dnd.xEnd - dnd.xIni, dnd.yEnd - dnd.yIni, this.currLineWith, this.currColour);
+				this.currentShape = new Rectangle(dnd.xIni, dnd.yIni, dnd.xEnd - dnd.xIni, dnd.yEnd - dnd.yIni, this.currLineWidth, this.currColour);
 				break;
 
 			default: console.log("ERR: no mode selected");
@@ -50,4 +50,11 @@ function Pencil(ctx, drawing, canvas) {
 	const colour = document.getElementById("colour");
 
 	colour.addEventListener("change", evt => this.currColour = evt.target.value);
+
+	// Bind the thickness
+	const spinnerWidth = document.getElementById("spinnerWidth");
+
+	const updateWidth = (evt => this.currLineWidth = evt.target.value).bind(this);
+
+	spinnerWidth.addEventListener("change", updateWidth);
 };
