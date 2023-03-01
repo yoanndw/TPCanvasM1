@@ -45,4 +45,9 @@ function Pencil(ctx, drawing, canvas) {
 
 	butLine.addEventListener("click", evt => this.currEditingMode = editingMode.line);
 	butRect.addEventListener("click", evt => this.currEditingMode = editingMode.rect);
+
+	// Bind the color
+	const colour = document.getElementById("colour");
+
+	colour.addEventListener("change", evt => this.currColour = evt.target.value);
 };
