@@ -38,4 +38,11 @@ function Pencil(ctx, drawing, canvas) {
 			drawing.paint(ctx, canvas);
 		}
 	}.bind(this);
+
+	// Bind with radio buttons
+	const butLine = document.getElementById("butLine");
+	const butRect = document.getElementById("butRect");
+
+	butLine.addEventListener("click", evt => this.currEditingMode = editingMode.line);
+	butRect.addEventListener("click", evt => this.currEditingMode = editingMode.rect);
 };
