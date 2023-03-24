@@ -1,1 +1,5 @@
-TP Web : Javascript et HTML5
+# TP Web : Javascript et HTML5
+
+TP réalisé en solo par Yoann DEWILDE (groupe 2).
+
+Paint très basique permettant de dessiner des lignes et des rectangles.
